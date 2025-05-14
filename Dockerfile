@@ -67,9 +67,11 @@ RUN chmod +x odoo-bin
 # Exponer el puerto en el que Odoo escuchará (Railway lo sobreescribirá con $PORT)
 EXPOSE 8069
 
-# Comando de inicio para Odoo
-# Usa la variable de entorno $PORT que Railway proporcionará.
+# CMD original comentado
 # CMD ["/app/odoo-bin", "--config=/app/odoo-arizon/odoo.conf", "--http-port=$PORT", "--http-interface=0.0.0.0", "--without-demo=all", "--workers=2", "--logfile=/dev/stdout"]
 
-# Comando temporal para depuración avanzada de odoo-bin
-CMD ["sh", "-c", "echo '--- START DEBUG ---'; echo 'Contenido de /app:'; ls -l /app; echo '---'; echo 'Detalles de /app/odoo-bin:'; ls -l /app/odoo-bin; echo \'---\'; echo \'Primeras líneas de /app/odoo-bin (con cat -A para ver caracteres especiales):\'; head -n 5 /app/odoo-bin | cat -A; echo \'---\'; echo \'Tipo de archivo de /app/odoo-bin:\'; file /app/odoo-bin; echo \'---\'; echo \'Intentando ejecutar /app/odoo-bin --version directamente:\'; /app/odoo-bin --version; echo \'---\'; echo \'Intentando ejecutar con python3 explícito:\'; python3 /app/odoo-bin --version; echo \'---\'; echo \'PATH del sistema:\'; echo $PATH; echo \'--- END DEBUG ---\'; echo \'Durmiendo indefinidamente para mantener el contenedor activo y revisar logs.\'; sleep infinity"] 
+# CMD de depuración avanzada comentado
+# CMD ["sh", "-c", "echo '--- START DEBUG ---'; ls -l /app; ... sleep infinity"]
+
+# CMD de prueba súper simple
+CMD ["ls", "-l", "/app"] 
