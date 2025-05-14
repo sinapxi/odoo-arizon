@@ -69,4 +69,4 @@ EXPOSE 8069
 
 # Comando de inicio para Odoo
 # Usa la variable de entorno $PORT que Railway proporcionará.
-CMD ["./odoo-bin", "--config=/app/odoo-arizon/odoo.conf", "--http-port=$PORT", "--http-interface=0.0.0.0", "--without-demo=all", "--workers=2", "--logfile=/dev/stdout"] 
+CMD ["/app/odoo-bin", "--config=/app/odoo-arizon/odoo.conf", "--http-port=$PORT", "--http-interface=0.0.0.0", "--without-demo=all", "--workers=2", "--logfile=/dev/stdout"] 
