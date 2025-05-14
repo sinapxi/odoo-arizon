@@ -67,10 +67,9 @@ RUN chmod +x odoo-bin
 # Exponer el puerto en el que Odoo escuchará (Railway lo sobreescribirá con $PORT)
 EXPOSE 8069
 
-# Comando de inicio para Odoo
-# Usa la variable de entorno $PORT que Railway proporcionará.
-# Es necesario usar sh -c para que las variables de entorno se expandan correctamente.
-CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_host=$DB_HOST --db_port=$PGPORT --db_user=$PGUSER --db_password=$PGPASSWORD --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout"]
+# Define el comando por defecto para ejecutar Odoo con la configuración y los parámetros necesarios.
+# sh -c es necesario para asegurar la expansión correcta de las variables de entorno $PORT y $PGPORT.
+CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_host=$DB_HOST --db_port=$PGPORT --db_user=$PGUSER --db_password=$PGPASSWORD --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout -i base --init=all --stop-after-init"]
 
 # CMD de depuración avanzada comentado
 # CMD ["sh", "-c", "echo '--- START DEBUG ---'; ls -l /app; ... sleep infinity"]
