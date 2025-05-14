@@ -69,8 +69,8 @@ EXPOSE 8069
 
 # Comando de inicio para Odoo
 # Usa la variable de entorno $PORT que Railway proporcionará.
-# Es necesario usar sh -c para que la variable $PORT se expanda correctamente.
-CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout"]
+# Es necesario usar sh -c para que las variables $PORT y $PGPORT se expandan correctamente.
+CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_port=$PGPORT --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout"]
 
 # CMD de depuración avanzada comentado
 # CMD ["sh", "-c", "echo '--- START DEBUG ---'; ls -l /app; ... sleep infinity"]
