@@ -69,7 +69,7 @@ EXPOSE 8069
 
 # Define el comando por defecto para ejecutar Odoo con la configuración y los parámetros necesarios.
 # sh -c es necesario para asegurar la expansión correcta de las variables de entorno $PORT y $PGPORT.
-CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_host=$DB_HOST --db_port=$PGPORT --db_user=$PGUSER --db_password=$PGPASSWORD --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout -i base --init=all --stop-after-init"]
+CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_host=$DB_HOST --db_port=$PGPORT --db_user=$PGUSER --db_password=$PGPASSWORD --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout"]
 
 # CMD de depuración avanzada comentado
 # CMD ["sh", "-c", "echo '--- START DEBUG ---'; ls -l /app; ... sleep infinity"]
