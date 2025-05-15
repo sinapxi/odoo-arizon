@@ -2,7 +2,7 @@
 
 # Establecer el puerto por defecto si no está definido
 export PORT=${PORT:-8069}
-echo "Starting Odoo on main port $PORT and longpolling on port $PORT"
+echo "Starting Odoo on main port $PORT (longpolling handled by http port due to proxy_mode)"
 
 # Configurar variables de entorno adicionales si es necesario
 export PYTHONUNBUFFERED=1
@@ -13,7 +13,6 @@ cd /app
 exec python3 /app/odoo-bin \
     -c /app/odoo-arizon/odoo.conf \
     --http-port=$PORT \
-    --longpolling-port=$PORT \
     --db_host=${DB_HOST} \
     --db_port=${PGPORT} \
     --db_user=${PGUSER} \
