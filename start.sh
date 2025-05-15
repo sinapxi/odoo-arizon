@@ -10,7 +10,7 @@ export PYTHONUNBUFFERED=1
 # Iniciar Odoo con los parámetros correctos
 # Reemplaza la ruta a odoo-bin y odoo.conf según tu estructura
 cd /app
-exec python3 /app/odoo/odoo-bin \
+exec python3 /app/odoo-bin \
     -c /app/odoo-arizon/odoo.conf \
     --http-port=$PORT \
     --db_host=${DB_HOST} \
