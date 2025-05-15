@@ -51,7 +51,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar todo el código de la aplicación al directorio de trabajo
 COPY . .
 
-# Asegurar que odoo-bin sea ejecutable (Git debería preservar esto, pero por si acaso)
+# Copiar el script de inicio y hacerlo ejecutable
+COPY start.sh /app/
+RUN chmod +x /app/start.sh
 RUN chmod +x odoo-bin
 
 # Crear un usuario no root para ejecutar Odoo (mejora la seguridad)
@@ -67,9 +69,8 @@ RUN chmod +x odoo-bin
 # Exponer el puerto en el que Odoo escuchará (Railway lo sobreescribirá con $PORT)
 EXPOSE 8069
 
-# Define el comando por defecto para ejecutar Odoo con la configuración y los parámetros necesarios.
-# sh -c es necesario para asegurar la expansión correcta de las variables de entorno $PORT y $PGPORT.
-CMD ["sh", "-c", "/app/odoo-bin --config=/app/odoo-arizon/odoo.conf --http-port=$PORT --db_host=$DB_HOST --db_port=$PGPORT --db_user=$PGUSER --db_password=$PGPASSWORD --http-interface=0.0.0.0 --without-demo=all --workers=2 --logfile=/dev/stdout"]
+# Define el comando por defecto para ejecutar el script de inicio
+CMD ["/app/start.sh"]
 
 # CMD de depuración avanzada comentado
 # CMD ["sh", "-c", "echo '--- START DEBUG ---'; ls -l /app; ... sleep infinity"]
