@@ -19,4 +19,4 @@ exec python3 /app/odoo-bin \
     --db_password=${PGPASSWORD} \
     --logfile=/dev/stdout \
     --without-demo=all \
-    --addons-path=/app/odoo/addons,/var/lib/odoo/addons/18.0,/app/addons
+    --addons-path=/app/odoo/addons,/app/addons
