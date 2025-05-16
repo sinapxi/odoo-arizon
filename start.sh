@@ -18,4 +18,5 @@ exec python3 /app/odoo-bin \
     --db_user=${PGUSER} \
     --db_password=${PGPASSWORD} \
     --logfile=/dev/stdout \
-    --without-demo=all 
+    --without-demo=all \
+    --addons-path=/app/odoo/addons,/var/lib/odoo/addons/18.0,/app/addons
