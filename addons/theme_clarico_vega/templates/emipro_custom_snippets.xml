@@ -4,7 +4,7 @@
     <template id="theme_vega_snippets" inherit_id="website.snippets">
         <xpath expr="//t[@id='default_snippets']//snippets[@id='snippet_groups']" position="before">
             <!-- Snippet groups -->
-            <snippets id="snippet_groups" string="Theme Snippets">
+            <snippets id="theme_vega_snippet_groups" string="Theme Snippets">
                 <t snippet-group="theme" t-snippet="website.s_snippet_group" string="Theme"
                     t-thumbnail="/theme_clarico_vega/static/src/img/snippets/theme-snippet.jpg"/>
                 <t snippet-group="static-snippet" t-snippet="website.s_snippet_group" string="Static Snippets"
