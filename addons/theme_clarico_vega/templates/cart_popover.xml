@@ -143,8 +143,8 @@
             <t t-set="free_shipping_price_val" t-value="website.free_shipping_price"/>
             <t t-set="free_shipping_calc_price"
                t-value="abs(website_sale_order.amount_total - free_shipping_price_val)"/>
-            <div t-attf-class="not_free_ship_text pb-1 {{'d-none' if website_sale_order.amount_total &gt; free_shipping_price_val else ''}}">
-                <div t-attf-class="first_main_freeship_price {{'d-none' if website_sale_order.amount_total &gt; free_shipping_price_val else ''}}">
+            <div t-attf-class="not_free_ship_text pb-1 {{'d-none' if website_sale_order.amount_total > free_shipping_price_val else ''}}">
+                <div t-attf-class="first_main_freeship_price {{'d-none' if website_sale_order.amount_total > free_shipping_price_val else ''}}">
                     <span>
                         Free Shipping for all orders of
                         <span class="fw-bold"
@@ -152,7 +152,7 @@
                               t-out="free_shipping_price_val"/>
                     </span>
                 </div>
-                <span t-attf-class="free_ship_not_added {{'d-none' if website_sale_order.amount_total &gt; free_shipping_price_val else ''}}">
+                <span t-attf-class="free_ship_not_added {{'d-none' if website_sale_order.amount_total > free_shipping_price_val else ''}}">
                     Buy
                     <span>
                         <span class="main_free_ship_data"
@@ -164,17 +164,19 @@
                     <span class="h6 fw-bold">Free Shipping</span>
                 </span>
             </div>
-            <div t-attf-class="final_msg_ship {{'d-block' if website_sale_order.amount_total &gt; free_shipping_price_val else 'd-none'}}">
+            <div t-attf-class="final_msg_ship {{'d-block' if website_sale_order.amount_total > free_shipping_price_val else 'd-none'}}">
                 <span class="text-success">
                     Your order qualifies for free shipping!
                 </span>
             </div>
-            <div class="progress-bar overflow-visible mt-2 mb-4">
-                <div class="progress-fill position-relative"
-                     t-attf-style="width: #{min((website_sale_order.amount_total / free_shipping_price_val) * 100, 100)}%;">
-                    <i class="fa fa-truck"/>
+            <t t-if="free_shipping_price_val > 0">
+                <div class="progress-bar overflow-visible mt-2 mb-4">
+                    <div class="progress-fill position-relative"
+                         t-attf-style="width: #{min((website_sale_order.amount_total / free_shipping_price_val) * 100, 100)}%;">
+                        <i class="fa fa-truck"/>
+                    </div>
                 </div>
-            </div>
+            </t>
         </t>
     </template>
 
