@@ -1,0 +1,19 @@
+<t t-name="theme_clarico_vega.cart_free_shipping_progressbar">
+    <t t-set="free_shipping_price_val" t-value="100"/> <!-- Test Value -->
+    <div class="cart_free_shipping_progressbar" t-if="website_sale_order and website.is_free_shipping">
+        <t t-set="remaining_amount" t-value="free_shipping_price_val - website_sale_order.amount_total"/>
+        <div class="progress_text_wrapper mb-2">
+            <t t-if="remaining_amount > 0">
+                <span class="text-muted">
+                    <t t-esc="remaining_amount" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/> more for free shipping
+                </span>
+            </t>
+            <t t-else="">
+                <span class="text-success fw-bold">You've got free shipping!</span>
+            </t>
+        </div>
+        <div class="progress rounded-pill mb-0">
+            <div class="progress-fill position-relative" t-attf-style="width: #{min((website_sale_order.amount_total / free_shipping_price_val) * 100, 100)}%;"/>
+        </div>
+    </div>
+</t> 
